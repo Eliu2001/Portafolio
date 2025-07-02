@@ -4,6 +4,8 @@ body {
     padding: 0px;
     font-family:'Libertinus Mono' ,'Roboto' , monospace, sans-serif !important;
     background-color: #E7EFC7 !important;
+    background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+    background-repeat: repeat;
     color: #3B3B1A !important;
     overflow-x: hidden;
 }
