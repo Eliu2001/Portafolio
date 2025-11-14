@@ -1,4 +1,9 @@
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css');
+
+html {
+    scroll-behavior: smooth; /* Scroll suave en todos los navegadores */
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -12,6 +17,12 @@ body {
 .navbar-custom {
     background-color: #AEC8A4 !important;
     border-bottom: 3px solid #8A784E;
+    top: 0;
+    z-index: 100; /* Asegurar que esté encima del contenido */
+}
+
+.navbar-custom.sticky-top {
+    position: sticky;
 }
 
 .navbar-custom .navbar-brand,
@@ -87,6 +98,91 @@ h1, h2, h3, h4, h5, h6 {
     transition: opacity 0.3s;
 }
 
+/* Estilos para el grid de proyectos (tarjetas) */
+.project-card {
+    border-color: #8A784E !important;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.project-card .card-img-wrapper {
+    position: relative;
+    height: 420px; /* usar gran parte del espacio en pantallas grandes */
+    overflow: hidden;
+    padding: 20px; /* más espacio entre borde de tarjeta y la imagen */
+    box-sizing: border-box;
+    background: #E7EFC7; /* usar paleta debajo de la imagen */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centrar la imagen dentro del wrapper */
+}
+.project-card img.card-img-top {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+}
+.project-card .card-overlay {
+    position: absolute;
+    inset: 12px; /* respeta el padding para que el overlay esté alineado con la imagen */
+    background: rgba(174,200,164,0.82);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    color: #3B3B1A;
+    border-radius: 8px;
+}
+.project-card .card-desc {
+    font-size: 1.05rem;
+}
+
+@media (max-width: 1199.98px) {
+    .project-card .card-img-wrapper {
+        height: 360px; /* laptops / tablets grandes */
+    }
+}
+
+@media (max-width: 991.98px) {
+    .project-card .card-img-wrapper {
+        height: 320px; /* tablets */
+        padding: 16px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .project-card .card-img-wrapper {
+        height: 300px; /* móvil */
+        padding: 12px;
+    }
+}
+
+.project-card .card-body {
+    background: #AEC8A4; /* usar color de la paleta */
+    color: #3B3B1A;
+    padding: 1.5rem 1.25rem 1.75rem 1.25rem; /* más espacio para balancear el mayor tamaño */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px; /* mayor altura para balancear el nuevo tamaño de la imagen */
+}
+.project-card .card-title {
+    margin: 0;
+    color: #3B3B1A;
+    font-size: 1.25rem; /* título más grande */
+}
+
+.project-card .card-desc {
+    font-size: 1.125rem; /* descripción legible */
+}
+
 .border, .border-3 {
     border-color: #8A784E !important;
 }
@@ -141,5 +237,50 @@ h1, h2, h3, h4, h5, h6 {
     .social-navbar-mini {
         display: none !important;
     }
+}
+
+/* ===== ESTILOS DE SECCIONES FULL-HEIGHT ===== */
+
+.hero-section {
+    min-height: 100vh;
+    width: 100%;
+    background: #E7EFC7;
+    padding: 80px 1rem 2rem; /* Respeta altura del navbar */
+}
+
+.hero-content {
+    max-width: 900px;
+    width: 100%;
+}
+
+.about-section {
+    min-height: 100vh;
+    width: 100%;
+    background: #E7EFC7;
+    padding: 80px 1rem 2rem;
+}
+
+.about-content {
+    max-width: 900px;
+    width: 100%;
+}
+
+.projects-section {
+    min-height: 100vh;
+    width: 100%;
+    background: #E7EFC7;
+    padding: 80px 1rem 2rem;
+}
+
+.contact-section {
+    min-height: 100vh;
+    width: 100%;
+    background: #E7EFC7;
+    padding: 80px 1rem 2rem;
+}
+
+.contact-content {
+    max-width: 900px;
+    width: 100%;
 }
 
