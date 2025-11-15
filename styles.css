@@ -305,6 +305,81 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
 }
 
+/* ===== ESTILOS PARA FORMULARIO DE CONTACTO ===== */
+
+.contact-form {
+    background: rgba(231, 239, 199, 0.15);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-form .form-label {
+    color: #3B3B1A;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-family: 'Libertinus Mono', monospace;
+}
+
+.contact-form .form-control {
+    background: rgba(231, 239, 199, 0.8);
+    border: 2px solid rgba(138, 120, 78, 0.3);
+    border-radius: 8px;
+    color: #3B3B1A;
+    padding: 0.75rem 1rem;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.contact-form .form-control:focus {
+    background: rgba(231, 239, 199, 0.95);
+    border-color: #8A784E;
+    box-shadow: 0 0 0 0.2rem rgba(138, 120, 78, 0.25);
+    outline: none;
+}
+
+.contact-form textarea.form-control {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.contact-form button[type="submit"] {
+    background-color: #8A784E !important;
+    color: #E7EFC7 !important;
+    border: none !important;
+    padding: 0.75rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.contact-form button[type="submit"]:hover:not(:disabled) {
+    background-color: #6d5f3e !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(138, 120, 78, 0.3);
+}
+
+.contact-form button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#contact-status {
+    font-size: 1rem;
+    font-weight: 500;
+    min-height: 1.5rem;
+}
+
+#contact-status.success {
+    color: #2d5016;
+}
+
+#contact-status.error {
+    color: #8b3a3a;
+}
+
 /* ===== ESTILOS ESPECÍFICOS PARA SECCIÓN ABOUT ===== */
 
 .about-subtitle {

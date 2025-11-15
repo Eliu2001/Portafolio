@@ -79,4 +79,57 @@ $(document).ready(function() {
         $(this).find('.card-overlay').css({opacity:0});
         $(this).find('img').css({opacity:1});
     });
+
+    // ===== MANEJO DEL FORMULARIO DE CONTACTO =====
+    const $form = $('#contact-form');
+    const $status = $('#contact-status');
+    const $submitBtn = $('#contact-submit');
+
+    if ($form.length) {
+        $form.on('submit', async function(e) {
+            e.preventDefault();
+            
+            // Limpiar estado previo
+            $status.removeClass('success error').text('Enviando mensaje...');
+            $submitBtn.prop('disabled', true);
+
+            const formData = {
+                name: $('#contact-name').val().trim(),
+                email: $('#contact-email').val().trim(),
+                subject: $('#contact-subject').val().trim(),
+                message: $('#contact-message').val().trim()
+            };
+
+            // Validación básica
+            if (!formData.name || !formData.email || !formData.message) {
+                $status.addClass('error').text('Por favor completa todos los campos obligatorios.');
+                $submitBtn.prop('disabled', false);
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    $status.addClass('success').text('¡Mensaje enviado con éxito! Te responderé pronto.');
+                    $form[0].reset();
+                } else {
+                    $status.addClass('error').text(result.error || 'Error al enviar el mensaje. Intenta más tarde.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                $status.addClass('error').text('Error de conexión. Por favor verifica que el servidor esté activo.');
+            } finally {
+                $submitBtn.prop('disabled', false);
+            }
+        });
+    }
 });
