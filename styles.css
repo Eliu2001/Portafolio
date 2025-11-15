@@ -244,7 +244,9 @@ h1, h2, h3, h4, h5, h6 {
 .hero-section {
     min-height: 100vh;
     width: 100%;
-    background: #E7EFC7;
+    background-color: #E7EFC7;
+    background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+    background-repeat: repeat;
     padding: 80px 1rem 2rem; /* Respeta altura del navbar */
 }
 
@@ -256,31 +258,156 @@ h1, h2, h3, h4, h5, h6 {
 .about-section {
     min-height: 100vh;
     width: 100%;
-    background: #E7EFC7;
+    /* Usar textura concrete pero con color de la paleta */
+    background-color: #AEC8A4; /* paleta: verde claro */
+    background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-3.png");
+    background-repeat: repeat;
+    background-position: center;
+    background-size: 260px 260px; /* aumentar tamaño del patrón para que se vea */
+    background-attachment: scroll;
+    background-blend-mode: multiply; /* combinar color y textura para más contraste */
     padding: 80px 1rem 2rem;
+    color: #3B3B1A; /* texto oscuro para buen contraste sobre verde claro */
 }
 
 .about-content {
-    max-width: 900px;
+    max-width: 100%;
     width: 100%;
+    padding: 0;
 }
 
 .projects-section {
     min-height: 100vh;
     width: 100%;
-    background: #E7EFC7;
+    background-color: #E7EFC7;
+    background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+    background-repeat: repeat;
     padding: 80px 1rem 2rem;
 }
 
 .contact-section {
     min-height: 100vh;
     width: 100%;
-    background: #E7EFC7;
+    /* Usar la misma textura y color que la sección About */
+    background-color: #AEC8A4; /* paleta: verde claro (igual que About) */
+    background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-3.png");
+    background-repeat: repeat;
+    background-position: center;
+    background-size: 260px 260px;
+    background-attachment: scroll;
+    background-blend-mode: multiply;
     padding: 80px 1rem 2rem;
+    color: #3B3B1A; /* texto oscuro para contraste sobre verde claro */
 }
 
 .contact-content {
     max-width: 900px;
     width: 100%;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA SECCIÓN ABOUT ===== */
+
+.about-subtitle {
+    color: #8A784E;
+    font-size: 1.25rem !important;
+    margin-bottom: 3rem !important;
+    font-weight: 500;
+}
+
+.about-card {
+    padding: 2rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 350px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(138, 120, 78, 0.15);
+}
+
+.presentation-card {
+    background: rgba(174, 200, 164, 0.06); /* aún más transparente para dejar ver la textura */
+}
+
+.presentation-card h3 {
+    color: #8A784E;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.about-text {
+    color: #3B3B1A;
+    line-height: 1.8;
+    text-align: justify;
+    font-size: 1.05rem;
+}
+
+.skills-card {
+    background: rgba(231, 239, 199, 0.06); /* Crema muy suave y más transparente */
+}
+
+.skills-card h3 {
+    color: #8A784E;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-item {
+    background: rgba(138, 120, 78, 0.06); /* Marrón muy suave */
+    padding: 0.75rem 1.25rem;
+    border-radius: 25px;
+    border: 1px solid rgba(138, 120, 78, 0.12);
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+    background: rgba(138, 120, 78, 0.15);
+    border-color: rgba(138, 120, 78, 0.4);
+    transform: scale(1.05);
+}
+
+.skill-name {
+    color: #3B3B1A;
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: 'Libertinus Mono', monospace;
+    white-space: nowrap;
+}
+
+@media (max-width: 991.98px) {
+    .about-card {
+        min-height: 300px;
+        padding: 1.5rem;
+    }
+    
+    .about-subtitle {
+        font-size: 1.1rem !important;
+    }
+    
+    .skill-item {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .about-card {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
