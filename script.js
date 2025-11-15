@@ -27,6 +27,30 @@ $(document).ready(function() {
         $('.navbar-collapse').collapse('hide');
     });
 
+    // 2.5. Navbar inteligente: se oculta al bajar, aparece al subir
+    let lastScrollTop = 0;
+    let scrollThreshold = 100; // Píxeles antes de activar el efecto
+    const $navbar = $('.navbar-custom');
+    
+    $(window).on('scroll', function() {
+        const scrollTop = $(this).scrollTop();
+        
+        if (scrollTop > scrollThreshold) {
+            if (scrollTop > lastScrollTop) {
+                // Scrolling hacia abajo - ocultar navbar
+                $navbar.addClass('navbar-hidden').removeClass('navbar-visible');
+            } else {
+                // Scrolling hacia arriba - mostrar navbar
+                $navbar.removeClass('navbar-hidden').addClass('navbar-visible');
+            }
+        } else {
+            // En la parte superior - siempre visible
+            $navbar.removeClass('navbar-hidden navbar-visible');
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+
     // 3. Botón Proyectos animado (tamaño y color con jQuery)
     $('#btn-project').on('mouseenter focus', function() {
         $(this).stop().animate({ fontSize: '2.5rem', paddingLeft: '2.5rem', paddingRight: '2.5rem' }, 180)

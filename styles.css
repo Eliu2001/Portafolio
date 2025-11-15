@@ -22,12 +22,20 @@ body {
 .navbar-custom {
     background-color: #AEC8A4 !important;
     border-bottom: 3px solid #8A784E;
+    position: fixed;
     top: 0;
-    z-index: 100; /* Asegurar que esté encima del contenido */
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    transition: transform 0.3s ease-in-out;
 }
 
-.navbar-custom.sticky-top {
-    position: sticky;
+.navbar-custom.navbar-hidden {
+    transform: translateY(-100%);
+}
+
+.navbar-custom.navbar-visible {
+    transform: translateY(0);
 }
 
 .navbar-custom .navbar-brand,
