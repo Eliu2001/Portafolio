@@ -260,6 +260,75 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* ===== ESTILOS DEL FOOTER ===== */
+
+.footer-section {
+    background-color: #8A784E;
+    background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+    background-repeat: repeat;
+    padding: 3rem 1rem 2rem;
+    color: #E7EFC7;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-icon {
+    color: #E7EFC7;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(231, 239, 199, 0.1);
+}
+
+.footer-icon:hover {
+    color: #AEC8A4;
+    transform: translateY(-5px) scale(1.1);
+    background: rgba(231, 239, 199, 0.2);
+}
+
+.footer-divider {
+    border: none;
+    border-top: 2px solid rgba(231, 239, 199, 0.3);
+    margin: 1.5rem auto;
+    max-width: 400px;
+}
+
+.footer-copyright {
+    color: #E7EFC7;
+    font-size: 0.95rem;
+    margin: 0;
+    padding: 0.5rem 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 767.98px) {
+    .footer-social-icons {
+        gap: 1.5rem;
+    }
+    
+    .footer-icon {
+        font-size: 1.75rem;
+        width: 45px;
+        height: 45px;
+    }
+}
+
 /* ===== ESTILOS DE SECCIONES FULL-HEIGHT ===== */
 
 .hero-section {
