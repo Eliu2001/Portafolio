@@ -12,7 +12,22 @@ $(document).ready(function() {
         $(this).delay(250*i).fadeIn(700);
     });
 
-    // 2. Botón Proyectos animado (tamaño y color con jQuery)
+    // 2. Scroll suave mejorado para enlaces de navegación
+    $('.navbar-collapse a.nav-link, a[href^="#"]').on('click', function(e) {
+        const href = $(this).attr('href');
+        if (href && href.startsWith('#') && href.length > 1) {
+            e.preventDefault();
+            const target = $(href);
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top - 80
+                }, 800, 'swing');
+            }
+        }
+        $('.navbar-collapse').collapse('hide');
+    });
+
+    // 3. Botón Proyectos animado (tamaño y color con jQuery)
     $('#btn-project').on('mouseenter focus', function() {
         $(this).stop().animate({ fontSize: '2.5rem', paddingLeft: '2.5rem', paddingRight: '2.5rem' }, 180)
                .css({ backgroundColor: '#8A784E', color: '#E7EFC7' });

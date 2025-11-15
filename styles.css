@@ -2,6 +2,11 @@
 
 html {
     scroll-behavior: smooth; /* Scroll suave en todos los navegadores */
+    scroll-padding-top: 80px; /* Compensar altura del navbar fijo */
+}
+
+* {
+    scroll-behavior: smooth;
 }
 
 body {
