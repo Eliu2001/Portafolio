@@ -53,7 +53,8 @@ body {
     background-color: #AEC8A4 !important;
     color: #3B3B1A !important;
     font-family: 'Libertinus Mono', 'Roboto', monospace, sans-serif !important;
-    border: none !important;
+    border: 2px solid rgba(138, 120, 78, 0.3) !important;
+    border-radius: 8px;
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s;
 }
 #btn-project:hover, #btn-project:focus, .btn-carousel:hover, .btn-carousel:focus, .btn:hover, .btn:focus {
