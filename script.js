@@ -163,12 +163,23 @@ $(document).ready(function() {
                 email: $('#contact-email').val().trim(),
                 subject: $('#contact-subject').val().trim(),
                 message: $('#contact-message').val().trim(),
-                access_key: "0c410403-d71e-4f9d-854d-53bad58d9496"
+                access_key: "0c410403-d71e-4f9d-854d-53bad58d9496",
+                botcheck: $('input[name="botcheck"]').is(':checked') // Honeypot anti-spam
             };
 
             // Validación básica
             if (!formData.name || !formData.email || !formData.message) {
                 $status.addClass('error').text('Por favor completa todos los campos obligatorios.');
+                $submitBtn.prop('disabled', false);
+                return;
+            }
+            
+            // Verificar honeypot: si está marcado, es un bot
+            if (formData.botcheck === true) {
+                console.warn('Bot detectado por honeypot');
+                // Simular éxito para el bot, pero no enviar
+                $status.addClass('success').text('¡Mensaje enviado con éxito!');
+                $form[0].reset();
                 $submitBtn.prop('disabled', false);
                 return;
             }
