@@ -15,13 +15,18 @@ const PORT = process.env.PORT || 3000;
 
 // Configurar transporte de correo con Nodemailer
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT || 587),
-    secure: process.env.SMTP_SECURE === 'true', // true para puerto 465, false para otros
+    host: process.env.SMTP_HOST || 'smtp.gmail.com',
+    port: Number(process.env.SMTP_PORT || 465),
+    secure: process.env.SMTP_SECURE === 'true' || process.env.SMTP_PORT === '465', // true para puerto 465, false para 587
     auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS
-    }
+    },
+    tls: {
+        rejectUnauthorized: false // Solución para algunos entornos de hosting
+    },
+    connectionTimeout: 10000, // 10 segundos timeout
+    greetingTimeout: 5000
 });
 
 // Verificar configuración de correo al iniciar
