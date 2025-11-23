@@ -60,7 +60,7 @@ body {
 #btn-project:hover, #btn-project:focus, .btn-carousel:hover, .btn-carousel:focus, .btn:hover, .btn:focus {
     background-color: #8A784E !important;
     color: #E7EFC7 !important;
-    transform: scale(1.12);
+    transform: scale(1.05);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -112,89 +112,100 @@ h1, h2, h3, h4, h5, h6 {
     transition: opacity 0.3s;
 }
 
-/* Estilos para el grid de proyectos (tarjetas) */
-.project-card {
-    border-color: #8A784E !important;
+/* Estilos para el grid de proyectos (tarjetas con hover overlay - más grandes) */
+.project-card-hover {
+    border: 4px solid #8A784E;
+    border-radius: 16px;
     overflow: hidden;
-    border-radius: 12px;
+    background: #E7EFC7;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
 }
-.project-card .card-img-wrapper {
+
+.project-card-hover:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+    transform: translateY(-5px);
+}
+
+.project-image-wrapper {
     position: relative;
-    height: 420px; /* usar gran parte del espacio en pantallas grandes */
+    height: 550px;
     overflow: hidden;
-    padding: 20px; /* más espacio entre borde de tarjeta y la imagen */
-    box-sizing: border-box;
-    background: #E7EFC7; /* usar paleta debajo de la imagen */
-    display: flex;
-    align-items: center;
-    justify-content: center; /* centrar la imagen dentro del wrapper */
+    background: #3B3B1A;
 }
-.project-card img.card-img-top {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+
+.project-main-img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    transition: opacity 0.3s ease;
-    border-radius: 10px;
+    transition: transform 0.4s ease;
 }
-.project-card .card-overlay {
+
+.project-overlay {
     position: absolute;
-    inset: 12px; /* respeta el padding para que el overlay esté alineado con la imagen */
-    background: rgba(174,200,164,0.82);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(174, 200, 164, 0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 2.5rem;
+    overflow-y: auto;
+}
+
+.overlay-content {
     text-align: center;
-    padding: 1rem;
-    opacity: 0;
-    transition: opacity 0.25s ease;
     color: #3B3B1A;
-    border-radius: 8px;
+    max-width: 95%;
+    width: 100%;
 }
-.project-card .card-desc {
+
+.overlay-description {
     font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 0;
+    color: #3B3B1A;
+    text-align: justify;
 }
 
-@media (max-width: 1199.98px) {
-    .project-card .card-img-wrapper {
-        height: 360px; /* laptops / tablets grandes */
-    }
+.project-title-bar {
+    background: #8A784E;
+    padding: 1.5rem;
+    text-align: center;
 }
 
-@media (max-width: 991.98px) {
-    .project-card .card-img-wrapper {
-        height: 320px; /* tablets */
-        padding: 16px;
-    }
+.project-card-title {
+    color: #E7EFC7 !important;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 0;
 }
 
 @media (max-width: 767.98px) {
-    .project-card .card-img-wrapper {
-        height: 300px; /* móvil */
-        padding: 12px;
+    .project-image-wrapper {
+        height: 400px;
     }
-}
-
-.project-card .card-body {
-    background: #AEC8A4; /* usar color de la paleta */
-    color: #3B3B1A;
-    padding: 1.5rem 1.25rem 1.75rem 1.25rem; /* más espacio para balancear el mayor tamaño */
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 140px; /* mayor altura para balancear el nuevo tamaño de la imagen */
-}
-.project-card .card-title {
-    margin: 0;
-    color: #3B3B1A;
-    font-size: 1.25rem; /* título más grande */
-}
-
-.project-card .card-desc {
-    font-size: 1.125rem; /* descripción legible */
+    
+    .project-overlay {
+        padding: 2rem;
+    }
+    
+    .overlay-description {
+        font-size: 1rem;
+    }
+    
+    .project-card-title {
+        font-size: 1.4rem;
+    }
+    
+    .project-title-bar {
+        padding: 1.5rem;
+    }
 }
 
 .border, .border-3 {

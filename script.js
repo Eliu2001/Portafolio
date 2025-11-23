@@ -68,15 +68,15 @@ $(document).ready(function() {
     // Datos de ejemplo de proyectos (puedes reemplazarlos por datos reales o por fetch)
     const projects = [
         {
-            title: 'Centro de salud mental',
-            description: 'Centro de salud mental, sonoroterapia y Masoterapia',
-            img: 'https://cdn.pixabay.com/photo/2022/10/01/17/22/lotus-7491929_1280.jpg',
+            title: 'App Web Librería',
+            description: 'Aplicación web completa de e-commerce especializada en la venta de libros. Cuenta con un sistema de gestión de inventario robusto que permite a usuarios administradores realizar operaciones CRUD (crear, leer, actualizar, eliminar) sobre el catálogo de productos. Los clientes pueden navegar por diferentes categorías, buscar libros, agregar productos al carrito de compras y completar transacciones de forma segura. La interfaz de administración incluye dashboard con estadísticas, gestión de pedidos y control de stock en tiempo real. Desarrollado utilizando HTML, CSS, Bootstrap para el frontend, Node.js con Express para el backend, Sequelize como ORM, Handlebars como motor de plantillas y PostgreSQL como base de datos. Proyecto final del bootcamp de Full Stack JavaScript de Coding Dojo / Talento Digital.',
+            img: 'https://cdn.pixabay.com/photo/2015/11/19/21/10/glasses-1052010_1280.jpg',
             url: '#'
         },
         {
-            title: 'Página cristiana',
-            description: 'Página cristiana para poder encontrar el camino hacia Cristo',
-            img: 'https://cdn.pixabay.com/photo/2015/03/26/00/47/cross-689658_1280.jpg',
+            title: 'Centro de salud mental',
+            description: 'Centro de salud mental, sonoroterapia y Masoterapia',
+            img: 'https://cdn.pixabay.com/photo/2022/10/01/17/22/lotus-7491929_1280.jpg',
             url: '#'
         },
         {
@@ -87,22 +87,24 @@ $(document).ready(function() {
         }
     ];
 
-    // Renderizar tarjetas en el grid de proyectos (3 por fila en md+ gracias a Bootstrap)
+    // Renderizar tarjetas en el grid de proyectos (diseño con hover overlay)
     const $grid = $('#projects-grid');
     $grid.empty();
     projects.forEach(function(p) {
         const card = `
-            <div class="col-12 col-md-6 col-lg-4 mb-4">
-                <div class="card project-card border-3">
-                    <div class="card-img-wrapper">
-                        <img src="${formatImgurUrl(p.img)}" class="card-img-top" alt="${p.title}">
-                        <div class="card-overlay">
-                            <p class="card-desc">${p.description}</p>
-                            <a href="${p.url}" class="btn btn-carousel mt-2">Ir al proyecto</a>
+            <div class="col-12 mb-5">
+                <div class="project-card-hover">
+                    <div class="project-image-wrapper">
+                        <img src="${formatImgurUrl(p.img)}" class="project-main-img" alt="${p.title}">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <p class="overlay-description">${p.description}</p>
+                                <a href="${p.url}" class="btn btn-carousel mt-4">Ver Proyecto</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">${p.title}</h5>
+                    <div class="project-title-bar">
+                        <h4 class="project-card-title">${p.title}</h4>
                     </div>
                 </div>
             </div>
@@ -110,13 +112,13 @@ $(document).ready(function() {
         $grid.append(card);
     });
 
-    // Pequeña animación hover para mostrar overlay con descripción
-    $grid.on('mouseenter', '.project-card', function() {
-        $(this).find('.card-overlay').css({opacity:1});
-        $(this).find('img').css({opacity:0.2});
-    }).on('mouseleave', '.project-card', function() {
-        $(this).find('.card-overlay').css({opacity:0});
-        $(this).find('img').css({opacity:1});
+    // Animación hover para mostrar overlay con descripción
+    $grid.on('mouseenter', '.project-card-hover', function() {
+        $(this).find('.project-overlay').css({opacity: 1, visibility: 'visible'});
+        $(this).find('.project-main-img').css({transform: 'scale(1.05)'});
+    }).on('mouseleave', '.project-card-hover', function() {
+        $(this).find('.project-overlay').css({opacity: 0, visibility: 'hidden'});
+        $(this).find('.project-main-img').css({transform: 'scale(1)'});
     });
 
     // ===== MANEJO DEL FORMULARIO DE CONTACTO =====
