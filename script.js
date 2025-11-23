@@ -1,6 +1,10 @@
 // Función para formatear URLs (por ejemplo Imgur) usando el proxy de images.weserv.nl
 const formatImgurUrl = (url) => {
     if (!url) return 'https://via.placeholder.com/300x300?text=No+Image';
+    // Si es una ruta local (empieza con img/ o ./ o /), devolverla sin procesar
+    if (url.startsWith('img/') || url.startsWith('./') || url.startsWith('/') || !url.startsWith('http')) {
+        return url;
+    }
     return `https://images.weserv.nl/?url=${encodeURIComponent(url.replace(/^https?:\/\//, ''))}`;
 };
 
@@ -70,8 +74,8 @@ $(document).ready(function() {
         {
             title: 'App Web Librería',
             description: 'Aplicación web completa de e-commerce especializada en la venta de libros. Cuenta con un sistema de gestión de inventario robusto que permite a usuarios administradores realizar operaciones CRUD (crear, leer, actualizar, eliminar) sobre el catálogo de productos. Los clientes pueden navegar por diferentes categorías, buscar libros, agregar productos al carrito de compras y completar transacciones de forma segura. La interfaz de administración incluye dashboard con estadísticas, gestión de pedidos y control de stock en tiempo real. Desarrollado utilizando HTML, CSS, Bootstrap para el frontend, Node.js con Express para el backend, Sequelize como ORM, Handlebars como motor de plantillas y PostgreSQL como base de datos. Proyecto final del bootcamp de Full Stack JavaScript de Coding Dojo / Talento Digital.',
-            img: 'https://cdn.pixabay.com/photo/2015/11/19/21/10/glasses-1052010_1280.jpg',
-            url: '#'
+            img: 'img/Libreria.png',
+            url: 'https://github.com/Eliu2001/libreria'
         },
         {
             title: 'Centro de salud mental',
@@ -99,7 +103,7 @@ $(document).ready(function() {
                         <div class="project-overlay">
                             <div class="overlay-content">
                                 <p class="overlay-description">${p.description}</p>
-                                <a href="${p.url}" class="btn btn-carousel mt-4">Ver Proyecto</a>
+                                <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="btn btn-carousel mt-4">Ver Proyecto</a>
                             </div>
                         </div>
                     </div>
