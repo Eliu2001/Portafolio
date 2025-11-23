@@ -97,13 +97,13 @@ $(document).ready(function() {
     projects.forEach(function(p) {
         const card = `
             <div class="col-12 mb-5">
-                <div class="project-card-hover">
+                <div class="project-card-hover" data-url="${p.url}">
                     <div class="project-image-wrapper">
                         <img src="${formatImgurUrl(p.img)}" class="project-main-img" alt="${p.title}">
                         <div class="project-overlay">
                             <div class="overlay-content">
                                 <p class="overlay-description">${p.description}</p>
-                                <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="btn btn-carousel mt-4">Ver Proyecto</a>
+                                <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="btn btn-carousel mt-4" onclick="event.stopPropagation()">Ver Proyecto</a>
                             </div>
                         </div>
                     </div>
@@ -123,6 +123,26 @@ $(document).ready(function() {
     }).on('mouseleave', '.project-card-hover', function() {
         $(this).find('.project-overlay').css({opacity: 0, visibility: 'hidden'});
         $(this).find('.project-main-img').css({transform: 'scale(1)'});
+    });
+
+    // Click en toda la tarjeta para ir al proyecto
+    $grid.on('click', '.project-card-hover', function(e) {
+        // Si el click fue en el botón, no hacer nada (el botón maneja su propio click)
+        if ($(e.target).hasClass('btn-carousel') || $(e.target).closest('.btn-carousel').length) {
+            return;
+        }
+        const url = $(this).data('url');
+        if (url && url !== '#') {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    });
+
+    // Cambiar cursor al pasar sobre la tarjeta
+    $grid.on('mouseenter', '.project-card-hover', function() {
+        const url = $(this).data('url');
+        if (url && url !== '#') {
+            $(this).css('cursor', 'pointer');
+        }
     });
 
     // ===== MANEJO DEL FORMULARIO DE CONTACTO =====
@@ -161,17 +181,25 @@ $(document).ready(function() {
                     body: JSON.stringify(formData)
                 });
 
-                const result = await response.json();
+                let result;
+                try {
+                    result = await response.json();
+                } catch (jsonError) {
+                    console.error('Error parsing JSON:', jsonError);
+                    result = { error: 'Error en la respuesta del servidor' };
+                }
 
                 if (response.ok) {
                     $status.addClass('success').text('¡Mensaje enviado con éxito! Te responderé pronto.');
                     $form[0].reset();
                 } else {
-                    $status.addClass('error').text(result.error || 'Error al enviar el mensaje. Intenta más tarde.');
+                    const errorMsg = result.error || `Error del servidor (${response.status}). Verifica la configuración SMTP.`;
+                    $status.addClass('error').text(errorMsg);
+                    console.error('Server error:', response.status, result);
                 }
             } catch (error) {
-                console.error('Error:', error);
-                $status.addClass('error').text('Error de conexión. Por favor verifica que el servidor esté activo.');
+                console.error('Error completo:', error);
+                $status.addClass('error').text('Error de conexión. El servidor podría no estar disponible.');
             } finally {
                 $submitBtn.prop('disabled', false);
             }

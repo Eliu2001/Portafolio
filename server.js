@@ -115,8 +115,23 @@ ${message}
         });
     } catch (error) {
         console.error('❌ Error enviando correo:', error.message);
+        console.error('Detalles completos:', error);
+        
+        let errorMessage = 'Error al enviar el mensaje.';
+        
+        if (error.code === 'EAUTH') {
+            errorMessage = 'Error de autenticación SMTP. Verifica las credenciales.';
+        } else if (error.code === 'ECONNECTION' || error.code === 'ETIMEDOUT') {
+            errorMessage = 'No se pudo conectar al servidor de correo.';
+        } else if (error.responseCode === 535) {
+            errorMessage = 'Credenciales SMTP inválidas. Verifica el App Password.';
+        } else if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+            errorMessage = 'Variables de entorno SMTP no configuradas.';
+        }
+        
         res.status(500).json({ 
-            error: 'Error al enviar el mensaje. Por favor intenta más tarde.' 
+            error: errorMessage,
+            details: error.message
         });
     }
 });
