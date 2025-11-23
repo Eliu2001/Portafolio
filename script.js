@@ -162,7 +162,8 @@ $(document).ready(function() {
                 name: $('#contact-name').val().trim(),
                 email: $('#contact-email').val().trim(),
                 subject: $('#contact-subject').val().trim(),
-                message: $('#contact-message').val().trim()
+                message: $('#contact-message').val().trim(),
+                access_key: "0c410403-d71e-4f9d-854d-53bad58d9496"
             };
 
             // Validación básica
@@ -173,7 +174,7 @@ $(document).ready(function() {
             }
 
             try {
-                const response = await fetch('/api/contact', {
+                const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -181,25 +182,18 @@ $(document).ready(function() {
                     body: JSON.stringify(formData)
                 });
 
-                let result;
-                try {
-                    result = await response.json();
-                } catch (jsonError) {
-                    console.error('Error parsing JSON:', jsonError);
-                    result = { error: 'Error en la respuesta del servidor' };
-                }
+                const result = await response.json();
 
-                if (response.ok) {
+                if (response.ok && result.success) {
                     $status.addClass('success').text('¡Mensaje enviado con éxito! Te responderé pronto.');
                     $form[0].reset();
                 } else {
-                    const errorMsg = result.error || `Error del servidor (${response.status}). Verifica la configuración SMTP.`;
-                    $status.addClass('error').text(errorMsg);
-                    console.error('Server error:', response.status, result);
+                    $status.addClass('error').text(result.message || 'Error al enviar el mensaje. Intenta más tarde.');
+                    console.error('Error:', result);
                 }
             } catch (error) {
                 console.error('Error completo:', error);
-                $status.addClass('error').text('Error de conexión. El servidor podría no estar disponible.');
+                $status.addClass('error').text('Error de conexión. Por favor intenta más tarde.');
             } finally {
                 $submitBtn.prop('disabled', false);
             }

@@ -7,3 +7,6 @@ package-lock.json
 # Editor
 .vscode/
 .idea/
+
+# Documentation
+WEB3FORMS_SETUP.md
