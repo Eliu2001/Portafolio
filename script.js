@@ -76,18 +76,6 @@ $(document).ready(function() {
             description: 'Aplicación web completa de e-commerce especializada en la venta de libros. Cuenta con un sistema de gestión de inventario robusto que permite a usuarios administradores realizar operaciones CRUD (crear, leer, actualizar, eliminar) sobre el catálogo de productos. Los clientes pueden navegar por diferentes categorías, buscar libros, agregar productos al carrito de compras y completar transacciones de forma segura. La interfaz de administración incluye dashboard con estadísticas, gestión de pedidos y control de stock en tiempo real. Desarrollado utilizando HTML, CSS, Bootstrap para el frontend, Node.js con Express para el backend, Sequelize como ORM, Handlebars como motor de plantillas y PostgreSQL como base de datos. Proyecto final del bootcamp de Full Stack JavaScript de Coding Dojo / Talento Digital.',
             img: 'img/Libreria.png',
             url: 'https://github.com/Eliu2001/libreria'
-        },
-        {
-            title: 'Centro de salud mental',
-            description: 'Centro de salud mental, sonoroterapia y Masoterapia',
-            img: 'https://cdn.pixabay.com/photo/2022/10/01/17/22/lotus-7491929_1280.jpg',
-            url: '#'
-        },
-        {
-            title: 'Noticiero Combarbalá',
-            description: 'Noticiero general de la comuna de Combarbalá',
-            img: 'https://cdn.pixabay.com/photo/2014/05/21/22/28/old-newspaper-350376_640.jpg',
-            url: '#'
         }
     ];
 
